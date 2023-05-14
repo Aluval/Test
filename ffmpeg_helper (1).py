@@ -71,7 +71,7 @@ async def MergeSub(filePath: str, subPath: str, user_id):
 
     returns: Merged Video File Path
     """
-    LOGGER.info("Generating mix command")
+    LOGGER.info("Generating mux command")
     muxcmd = []
     muxcmd.append("ffmpeg")
     muxcmd.append("-hide_banner")
@@ -103,11 +103,11 @@ async def MergeSub(filePath: str, subPath: str, user_id):
     muxcmd.append("copy")
     muxcmd.append("-c:s")
     muxcmd.append("srt")
-    muxcmd.append(f"./downloads/{str(user_id)}/[@SUNRISES_24]_softmixed_video.mkv")
-    LOGGER.info("Mixing subtitles")
+    muxcmd.append(f"./downloads/{str(user_id)}/[@SUNRISES_24]_softmuxed_video.mkv")
+    LOGGER.info("Muxing subtitles")
     subprocess.call(muxcmd)
     orgFilePath = shutil.move(
-        f"downloads/{str(user_id)}/[@yashf"downloads/{str(user_id)}/[@SUNRISES_24]_softmixed_video.mkvoswalyo]_softmixed_video.mkv", filePath
+        f"downloads/{str(user_id)}/[@SUNRISES_24]_softmuxed_video.mkv"), filePath
     )
     return orgFilePath
 
@@ -155,7 +155,7 @@ def MergeSubNew(filePath: str, subPath: str, user_id, file_list):
     muxcmd.append("copy")
     muxcmd.append("-c:s")
     muxcmd.append("srt")
-    muxcmd.append(f"./downloads/{str(user_id)}/[@SUNRISES_24]_softmixed_video.mkv")
+    muxcmd.append(f"./downloads/{str(user_id)}/[@SUNRISES_24]_softmuxed_video.mkv")
     LOGGER.info("Sub muxing")
     subprocess.call(muxcmd)
     return f"downloads/{str(user_id)}/[@SUNRISES_24]_softmixed_video.mkv"
